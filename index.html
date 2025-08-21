@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Fitness Platform - Website Narratives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 40px 20px;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 20px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #764ba2;
+            font-style: italic;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .container { padding: 15px; }
+            .section { padding: 20px; }
+            .navigation { gap: 5px; }
+            .nav-btn { padding: 8px 15px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Heath Kreeda</h1>
+            <p>Personalized Health and Fitness Platform for Sports Enthusiasts</p>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection('hero', event)">Home</button>
+            <a href="services.html" class="nav-btn">Feature Stories</a>
+            <button class="nav-btn" onclick="showSection('journey', event)">User Journey</button>
+            <button class="nav-btn" onclick="showSection('trust', event)">Trust Building</button>
+            <button class="nav-btn" onclick="showSection('social', event)">Social Impact</button>
+            <button class="nav-btn" onclick="showSection('cta', event)">Calls to Action</button>
+            
+        </div>
+
+        <div id="hero" class="section active">
+            <h2>WELCOME! to HealthKreeda</h2>
+            
+            <div class="highlight">
+                <h3>Your HealhKreeda For You</h3>
+                <p><strong>"Your AI-Powered Path to Peak Performance"</strong></p>
+                <p>Transform your fitness journey with 10 intelligent AI coaches working together to optimize every aspect of your health - from training and nutrition to recovery and mental performance.</p>
+            </div>
+
+            <h3>Personalized YourSelf As</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎯 Results-Focused</h4>
+                    <p>"Stop Guessing. Start Achieving. HealthKreeda ecosystem delivers real results through intelligent coaching across fitness, nutrition, psychology, and recovery."</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔬 Science-Led</h4>
+                    <p>"The Future of Fitness is Here. Advanced AI analyzes your unique data to prevent injuries, optimize performance, and accelerate your progress like never before."</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏆 Aspirational</h4>
+                    <p>"Unlock Your Ultimate Potential. Meet your team of 10 AI specialists - each dedicated to perfecting a different aspect of your fitness and wellness journey."</p>
+                </div>
+            </div>
+
+            <h3>Why Athletes & Fitness Enthusiast Trust Us</h3>
+            <p><strong>• Personalized Intelligence:</strong> Every recommendation tailored to your body, goals, and lifestyle</p>
+            <p><strong>• Injury Prevention First:</strong> Advanced risk prediction keeps you training safely and consistently</p>
+            <p><strong>• Holistic Approach:</strong> Mind, body, nutrition, and recovery - all optimized together</p>
+            <p><strong>• Real-Time Adaptation:</strong> Your AI coaches learn and evolve with your progress</p>
+
+            <div class="cta-box">
+                <h3>Start With Us Today</h3>
+                <p><strong>"Start Your AI-Powered Transformation"</strong></p>
+                <p>Thousands have revolutionized their fitness with intelligent, personalized coaching.</p>
+            </div>
+        </div>
+
+        <div id="features" class="section">
+            <h2>🔧 Feature Storytelling Framework</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🏋️ AI Fitness Coach</h4>
+                    <p><strong>Story:</strong> "Meet your personal trainer who never sleeps, never judges, and knows exactly what you need."</p>
+                    <p><strong>Benefit:</strong> Adaptive workouts that evolve with your progress across any sport or fitness goal.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🍎 AI Nutrition Planner</h4>
+                    <p><strong>Story:</strong> "Forget generic meal plans. Your AI nutritionist creates perfect fuel for YOUR body and goals."</p>
+                    <p><strong>Benefit:</strong> Personalized nutrition that adapts to your training, preferences, and lifestyle.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🧠 AI Psychology & Motivation</h4>
+                    <p><strong>Story:</strong> "Your mental performance coach understands your mindset and keeps you mentally strong."</p>
+                    <p><strong>Benefit:</strong> Breakthrough mental barriers with personalized motivation strategies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🛡️ AI Injury Risk Prediction</h4>
+                    <p><strong>Story:</strong> "Stay ahead of injuries before they happen. Your AI guardian analyzes patterns you can't see."</p>
+                    <p><strong>Benefit:</strong> Train with confidence knowing you're protected by predictive intelligence.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>⚕️ AI Injury-Free Training</h4>
+                    <p><strong>Story:</strong> "Turn setbacks into comebacks. Your rehabilitation specialist designs the perfect recovery path."</p>
+                    <p><strong>Benefit:</strong> Safe, effective training that works around limitations and accelerates healing.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>😴 AI Sleep & Recovery Coach</h4>
+                    <p><strong>Story:</strong> "Recovery isn't rest - it's when you actually get stronger. Your AI ensures you're doing it right."</p>
+                    <p><strong>Benefit:</strong> Optimize sleep and recovery for maximum performance gains.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎯 AI Sports Strategy Advisor</h4>
+                    <p><strong>Story:</strong> "Every champion needs a game plan. Your AI strategist analyzes and optimizes your competitive approach."</p>
+                    <p><strong>Benefit:</strong> Gain competitive advantage through data-driven strategy insights.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📊 AI Social & Sentiment Analyzer</h4>
+                    <p><strong>Story:</strong> "Understand how your environment affects your performance. Your AI reads the room so you can optimize it."</p>
+                    <p><strong>Benefit:</strong> Leverage social dynamics and emotional intelligence for better results.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📈 AI Habit & Progress Tracker</h4>
+                    <p><strong>Story:</strong> "Success is built on consistent habits. Your AI tracks everything so you can focus on what matters."</p>
+                    <p><strong>Benefit:</strong> Build lasting habits with intelligent tracking and behavioral insights.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎛️ AI Virtual Mentor Dashboard</h4>
+                    <p><strong>Story:</strong> "Your mission control center. All 9 AI specialists report here with unified guidance and insights."</p>
+                    <p><strong>Benefit:</strong> One dashboard that orchestrates your entire fitness ecosystem intelligently.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>Feature Integration Story</h3>
+                <p>"This isn't just 10 separate tools - it's 10 AI specialists working as one integrated team. Your Fitness Coach talks to your Nutrition Planner. Your Injury Predictor informs your Sleep Coach. Your Psychology Assistant aligns with your Progress Tracker. Together, they create a personalized fitness ecosystem that's uniquely yours."</p>
+            </div>
+        </div>
+
+        <div id="journey" class="section">
+            <h2>🛤️ User Journey Narratives</h2>
+            
+            <h3>The Transformation Story</h3>
+            <div class="highlight">
+                <p><strong>Before:</strong> "Scattered fitness apps. Generic advice. Constant injuries. Plateaus you can't break through. You're working hard but not getting the results you deserve."</p>
+                
+                <p><strong>During:</strong> "Your AI team analyzes your unique patterns, identifies what's holding you back, and creates a personalized roadmap. Every workout, meal, and recovery session is optimized for YOUR body and goals."</p>
+                
+                <p><strong>After:</strong> "You're stronger, faster, and injury-free. You've broken through plateaus you thought were permanent. Most importantly, you understand your body better than ever before."</p>
+            </div>
+
+            <h3>Day-in-the-Life Scenarios</h3>
+            
+            <div class="testimonial">
+                <p><strong>The Busy Professional:</strong> "Sarah checks her dashboard at 6 AM. Her Sleep Coach analyzed her rest quality and adjusted today's workout intensity. Her Nutrition Planner prepped a quick breakfast that fuels her morning run. By lunch, her Progress Tracker shows she's ahead of schedule on her marathon goal."</p>
+            </div>
+            
+            <div class="testimonial">
+                <p><strong>The Comeback Athlete:</strong> "After his knee injury, Mike thought competitive sports were over. His AI Rehabilitation Coach designed a safe return program, while his Injury Predictor ensures he never re-injures. Six months later, he's back on the field - stronger and smarter than before."</p>
+            </div>
+            
+            <div class="testimonial">
+                <p><strong>The Fitness Beginner:</strong> "Emma was overwhelmed by conflicting fitness advice. Her AI team simplified everything - one app, one plan, one clear path forward. Her Psychology Coach keeps her motivated while her Habit Tracker celebrates every small win."</p>
+            </div>
+
+            <h3>Problem-Solution Narrative Arc</h3>
+            <p><strong>Problem:</strong> Fitness is complicated, personal, and constantly changing. Generic solutions fail because they ignore your unique needs, limitations, and goals.</p>
+            
+            <p><strong>Agitation:</strong> You've tried multiple apps, conflicting advice, and one-size-fits-all programs. You're frustrated by injuries, plateaus, and lack of real progress despite your efforts.</p>
+            
+            <p><strong>Solution:</strong> An integrated AI ecosystem that understands YOU - your body, your mind, your lifestyle, your goals. Ten specialized AI coaches working together to create a truly personalized fitness experience.</p>
+        </div>
+
+        <div id="trust" class="section">
+            <h2>🛡️ Trust Building Content</h2>
+            
+            <h3>Scientific Foundation</h3>
+            <div class="highlight">
+                <p>"Built on validated sports science, exercise physiology, and behavioral psychology research. Our AI models are trained on peer-reviewed studies and real-world performance data from thousands of athletes and fitness enthusiasts."</p>
+            </div>
+
+            <h3>Safety & Privacy</h3>
+            <p><strong>• Your Data, Your Control:</strong> All personal health information stays encrypted and private</p>
+            <p><strong>• Injury Prevention First:</strong> Conservative recommendations prioritize long-term health over short-term gains</p>
+            <p><strong>• Medical Professional Approved:</strong> Developed with sports medicine doctors and certified trainers</p>
+            <p><strong>• Transparent AI:</strong> Understand why your AI coaches make each recommendation</p>
+
+            <h3>Credibility Markers</h3>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Hours of Training Data</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Injury Prediction Accuracy</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">Faster Goal Achievement</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">AI Coach Availability</div>
+                </div>
+            </div>
+
+            <h3>About Us Story</h3>
+            <div class="highlight">
+                <p>"Founded by sports scientists, AI researchers, and former athletes who were frustrated by the disconnect between cutting-edge sports science and accessible fitness tools. We believe everyone deserves personalized, intelligent coaching - not just elite athletes with teams of specialists."</p>
+            </div>
+        </div>
+
+        <div id="social" class="section">
+            <h2>👥 Social Impact & Testimonials</h2>
+            
+            <h3>User Success Stories</h3>
+            
+            <div class="testimonial">
+                <p>"Training and recovery are everything in cricket. When I started using Health Kreeda, I was amazed at how useful it is — from personalized fitness plans to injury tracking and nutrition tips, it feels like I always have a coach by my side. It has genuinely helped me stay consistent and improve my game. For any sportsperson, this platform is a big advantage." - <strong>Harsh Agnihotri , Cricket Professional</strong></p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"Yoga has always been about balance — body, mind, and lifestyle. With Health Kreeda, I’ve found a platform that truly supports that balance. From personalized wellness plans to injury prevention and nutrition guidance, it has been so useful in deepening my practice and keeping me consistent every day. For anyone serious about health, this is a wonderful companion." - <strong>Vaishnavi Pathak , Professional Yoga Enthusiast</strong></p>
+            </div>
+            
+            <div class="testimonial">
+                <p>"Tennis demands agility, stamina, and focus. With Health Kreeda, I finally have a training companion that understands all three. The AI coaches give me customized drills, recovery advice, and nutrition guidance that actually fit my game. It’s been really useful in keeping me sharper and stronger on the court." - <strong>Harsh Ahelleya , State Tennis Player</strong></p>
+            </div>
+
+            <h3>Community Impact</h3>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Workouts Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Achieve Goals Faster</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">User Rating</div>
+                </div>
+            </div>
+
+            <h3>Expert Endorsements</h3>
+            <div class="highlight">
+                <p>"Fitness is the foundation of my game, and I’ve always believed in pushing limits the right way. Health Kreeda is a platform that reflects the same philosophy — helping athletes and fitness enthusiasts train smarter, recover faster, and stay injury-free. I strongly recommend it to anyone who wants to take their health and performance seriously." - <strong>Virat Kohli , Indian Cricketer(Captain)</strong></p>
+            </div>
+        </div>
+
+        <div id="cta" class="section">
+            <h2>🎯 Call-to-Action Strategy</h2>
+            
+            <h3>Primary CTAs by Page Type</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🏠 Homepage</h4>
+                    <p><strong>Primary:</strong> "Start Your AI-Powered Journey"</p>
+                    <p><strong>Secondary:</strong> "See How It Works"</p>
+                    <p><strong>Risk Reversal:</strong> "Try Free for 14 Days"</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔧 Features Pages</h4>
+                    <p><strong>Primary:</strong> "Experience [Feature Name]"</p>
+                    <p><strong>Secondary:</strong> "View All Features"</p>
+                    <p><strong>Risk Reversal:</strong> "No Credit Card Required"</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💰 Pricing Page</h4>
+                    <p><strong>Primary:</strong> "Begin Transformation"</p>
+                    <p><strong>Secondary:</strong> "Talk to Our Team"</p>
+                    <p><strong>Risk Reversal:</strong> "30-Day Money-Back Guarantee"</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📖 About/Story</h4>
+                    <p><strong>Primary:</strong> "Join Our Mission"</p>
+                    <p><strong>Secondary:</strong> "Meet the Team"</p>
+                    <p><strong>Risk Reversal:</strong> "Free Consultation"</p>
+                </div>
+            </div>
+
+            <h3>Urgency & Scarcity Elements</h3>
+            <p><strong>• Limited Beta Access:</strong> "Join the first 1,000 users to access our complete AI ecosystem"</p>
+            <p><strong>• Seasonal Urgency:</strong> "Start your transformation now - summer/New Year/competition season is coming"</p>
+            <p><strong>• Progress Urgency:</strong> "Every day without personalized coaching is a day of wasted potential"</p>
+
+            <h3>CTA Supporting Messages</h3>
+            <div class="cta-box">
+                <h3>Trust Builders</h3>
+                <p>✓ Used by 50,000+ fitness enthusiasts</p>
+                <p>✓ Scientifically validated approach</p>
+                <p>✓ No long-term contracts</p>
+                <p>✓ Cancel anytime</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Value Reinforcement</h3>
+                <p>"Get the equivalent of a personal trainer, nutritionist, sports psychologist, and injury prevention specialist - all powered by AI and available 24/7."</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function showSection(sectionId, event) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(button => button.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+    }
+
+    // Add smooth scrolling to top when switching sections
+    document.addEventListener('DOMContentLoaded', function() {
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
